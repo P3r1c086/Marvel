@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    ESTE ESTILO VA A AFECTAR A VISTAS (COMPONENTES CONCRETOS)
+        Sobreescribira al estilo que se le de en el theme
+        textSize esta comentado porque sobreescribe a textAppearance-->
+    <style name="localTextViewStyle" parent="Widget.MaterialComponents.TextView">
+<!--        <item name="android:textSize">30sp</item>-->
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+    </style>
+</resources>

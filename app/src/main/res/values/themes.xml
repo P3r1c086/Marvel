@@ -12,5 +12,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- IDENTIFICAR COMO QUEREMOS QUE SE VEAN COMPONENTES CONCRETOS -->
+        <item name="android:textViewStyle">@style/textViewStyle</item>
+    </style>
+        <!--CREAMOS UN ESTILO PARA LOS TEXTVIEW DE LA APP. Extendemos de un estilo padre, para que
+        toda esa configuracion por defecto ya la tengamos-->
+    <style name="textViewStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">24sp</item>
+<!--        <item name="android:background">?attr/colorSecondary</item>-->
+        <!-- Se pone android al principio dependiendo de si el atributo pertenece al framework general
+         de android, si es parte de un theme que pertenece a una libreria como es el caso de Material
+          components, no necesita el android: delante-->
     </style>
 </resources>
