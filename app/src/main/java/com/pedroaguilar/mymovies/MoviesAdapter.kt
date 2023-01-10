@@ -1,9 +1,9 @@
 package com.pedroaguilar.mymovies
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pedroaguilar.mymovies.databinding.ViewMovieItemBinding
 
 /**
@@ -13,7 +13,12 @@ import com.pedroaguilar.mymovies.databinding.ViewMovieItemBinding
  * More info: linkedin.com/in/pedro-aguilar-fernández-167753140
  * All rights reserved 2023
  **/
-class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+
+class MoviesAdapter(
+    private val movies: List<Movie>,
+    private val movieClickedLsitener: (Movie) -> Unit)
+    :
+    RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     /**
      * Creara una nueva vista cuando el recyclerView se lo pida
@@ -27,11 +32,16 @@ class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movi
         return ViewHolder(binding)
     }
 
+
     /**
      * Actualizara las vistas cuando el recyclerView se lo pida
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movies[position])
+        val movie = movies[position]
+        holder.bind(movie)//movie es un objeto pelicula en una posicion concreta
+        //asignar el onClikListener al adapter. El holder guarda la vista que le pasamos
+        // por argumento al ViewHolder en la propiedad itemView
+        holder.itemView.setOnClickListener { movieClickedLsitener(movie) }
     }
 
     /**
@@ -42,6 +52,9 @@ class MoviesAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movi
     class ViewHolder(private val binding: ViewMovieItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie){
             binding.tvTitleMovie.text = movie.title
+            Glide.with(binding.root.context)
+                .load(movie.cover)
+                .into(binding.imgCover)
         }
     }
 
