@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.pedroaguilar.mymovies.databinding.ActivityMainBinding
+import com.pedroaguilar.mymovies.model.MovieDbClient
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +28,16 @@ class MainActivity : AppCompatActivity() {
         ){ movie -> //esta lamnda representa el listener
             //si solo pongo this tomaria el contexto del objeto que se esta creando aqui
             Toast.makeText(this@MainActivity, movie.title, Toast.LENGTH_SHORT).show()
+        }
+        thread {
+            val apiKey = getString(R.string.api_key)
+            val popularMovies = MovieDbClient.service.listPopularMovies(apiKey)
+            val body = popularMovies.execute().body()
+            if (body != null){
+                Log.d("MainActivity////", "Movie count: ${body.results.size}")
+            }
+
+
         }
     }
 
