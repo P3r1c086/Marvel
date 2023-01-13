@@ -14,11 +14,11 @@ import com.pedroaguilar.mymovies.databinding.ViewMovieItemBinding
  * All rights reserved 2023
  **/
 
-class MoviesAdapter(
-    private val movies: List<Movie>,
-    private val movieClickedLsitener: (Movie) -> Unit)
+class CharactersAdapter(
+    private val characters: List<Character>,
+    private val characterClickedLsitener: (Character) -> Unit)
     :
-    RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
     /**
      * Creara una nueva vista cuando el recyclerView se lo pida
@@ -37,24 +37,24 @@ class MoviesAdapter(
      * Actualizara las vistas cuando el recyclerView se lo pida
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = movies[position]
-        holder.bind(movie)//movie es un objeto pelicula en una posicion concreta
+        val character = characters[position]
+        holder.bind(character)//movie es un objeto pelicula en una posicion concreta
         //asignar el onClikListener al adapter. El holder guarda la vista que le pasamos
         // por argumento al ViewHolder en la propiedad itemView
-        holder.itemView.setOnClickListener { movieClickedLsitener(movie) }
+        holder.itemView.setOnClickListener { characterClickedLsitener(character) }
     }
 
     /**
      * Devuelve el numero de elementos que tiene el adapter
      */
-    override fun getItemCount(): Int = movies.size
+    override fun getItemCount(): Int = characters.size
 
     class ViewHolder(private val binding: ViewMovieItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(movie: Movie){
-            binding.tvTitleMovie.text = movie.title
+        fun bind(character: Character){
+            binding.tvTitleMovie.text = character.name
             Glide.with(binding.root.context)
-                .load(movie.cover)
-                .into(binding.imgCover)
+                .load(character.picture)
+                .into(binding.imgCharacter)
         }
     }
 

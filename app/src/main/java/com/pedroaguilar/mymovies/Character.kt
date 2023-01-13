@@ -7,4 +7,4 @@ package com.pedroaguilar.mymovies
  * More info: linkedin.com/in/pedro-aguilar-fernández-167753140
  * All rights reserved 2023
  **/
-data class Movie(val title: String, val cover: String)
+data class Character(val name: String, val picture: String)
