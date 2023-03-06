@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -12,10 +13,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyMovies"
+        android:theme="@style/Theme.Marvel"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.pedroaguilar.marvel.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +29,17 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <!-- ParentActivityName es para volver a la actividad anterior  -->
+        <activity
+            android:name="com.pedroaguilar.marvel.DetailActivity"
+            android:theme="@style/Theme.Marvel.NoActionBar"
+            android:parentActivityName=".MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
     </application>
 
 </manifest>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="2dp">
 
     <ImageView
         android:id="@+id/imgCharacter"
@@ -20,6 +21,11 @@
         tools:text="Movie Title"
         style="@style/localTextViewStyle"
         android:gravity="center"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:background="?attr/colorPrimary"
+        android:textColor="?attr/colorOnPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:lines="1"
+        android:ellipsize="end"/>
 
 </LinearLayout>
