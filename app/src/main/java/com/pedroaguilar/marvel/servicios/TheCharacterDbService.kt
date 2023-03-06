@@ -1,4 +1,4 @@
-package com.pedroaguilar.marvel
+package com.pedroaguilar.marvel.servicios
 
 import com.pedroaguilar.marvel.model.character.CharactersResult
 import retrofit2.http.GET

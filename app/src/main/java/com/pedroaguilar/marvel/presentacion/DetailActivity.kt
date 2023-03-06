@@ -1,4 +1,4 @@
-package com.pedroaguilar.marvel
+package com.pedroaguilar.marvel.presentacion
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

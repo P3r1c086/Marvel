@@ -1,6 +1,6 @@
 package com.pedroaguilar.marvel.model.comic
 
-import com.pedroaguilar.marvel.TheComicsService
+import com.pedroaguilar.marvel.servicios.TheComicsService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

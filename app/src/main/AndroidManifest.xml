@@ -17,7 +17,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name="com.pedroaguilar.marvel.MainActivity"
+            android:name="com.pedroaguilar.marvel.presentacion.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +31,9 @@
         </activity>
         <!-- ParentActivityName es para volver a la actividad anterior  -->
         <activity
-            android:name="com.pedroaguilar.marvel.DetailActivity"
+            android:name="com.pedroaguilar.marvel.presentacion.DetailActivity"
             android:theme="@style/Theme.Marvel.NoActionBar"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".presentacion.MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

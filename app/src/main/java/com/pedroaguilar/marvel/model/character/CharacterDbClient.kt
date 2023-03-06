@@ -1,6 +1,6 @@
 package com.pedroaguilar.marvel.model.character
 
-import com.pedroaguilar.marvel.TheCharacterDbService
+import com.pedroaguilar.marvel.servicios.TheCharacterDbService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

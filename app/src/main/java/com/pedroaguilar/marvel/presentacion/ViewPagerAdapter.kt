@@ -1,9 +1,11 @@
-package com.pedroaguilar.marvel
+package com.pedroaguilar.marvel.presentacion
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.pedroaguilar.marvel.presentacion.characterUI.CharacterFragment
+import com.pedroaguilar.marvel.presentacion.comicUI.ComicFragment
 
 /**
  * Proyect: My Movies

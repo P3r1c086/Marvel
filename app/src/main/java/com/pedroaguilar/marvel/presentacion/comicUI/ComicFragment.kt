@@ -1,4 +1,4 @@
-package com.pedroaguilar.marvel
+package com.pedroaguilar.marvel.presentacion.comicUI
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,66 +8,68 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.pedroaguilar.marvel.databinding.FragmentCharacterBinding
-import com.pedroaguilar.marvel.model.character.CharacterDb
-import com.pedroaguilar.marvel.model.character.CharacterDbClient
+import com.pedroaguilar.marvel.presentacion.DetailActivity
+import com.pedroaguilar.marvel.databinding.FragmentComicBinding
+import com.pedroaguilar.marvel.model.comic.ComicDb
+import com.pedroaguilar.marvel.model.comic.ComicsClient
 import kotlinx.coroutines.launch
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.sql.Timestamp
 
-class CharacterFragment : Fragment() {
+
+class ComicFragment : Fragment() {
 
     companion object{
         private const val ARG_OBJECT = "object"
     }
 
-    private lateinit var binding: FragmentCharacterBinding
+    private lateinit var binding: FragmentComicBinding
 
     val ts = Timestamp(System.currentTimeMillis()).time.toString()
     val apyKeyPublic = "76c50e571bdbf850b8df6384d24b6670"
     val apyKeyPrivate = "9728204088bf033acdd0e62ab60b0cf6b91ef0c9"
 
     //esta lamnda representa el listener
-    private val charactersAdapter = CharactersAdapter(emptyList()){ character ->  navigateTo(character)}
+    private val comicsAdapter = ComicsAdapter(emptyList()){ comic ->  navigateTo(comic)}
     //al adapter se le pasa una lista y en este caso concreto, un listener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCharacterBinding.inflate(inflater, container, false)
+        binding = FragmentComicBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-            requestPopularCharacter()
-            binding.recycler.adapter = charactersAdapter
+            requestPopularComic()
+            binding.recycler.adapter = comicsAdapter
         }
-
     }
-    private fun navigateTo(character: CharacterDb) {
+
+    private fun navigateTo(comic: ComicDb) {
         val intent = Intent(activity, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.EXTRA_CHARACTER, character)
+        intent.putExtra(DetailActivity.EXTRA_CHARACTER, comic)
         startActivity(intent)
     }
 
     @SuppressLint("MissingPermission")
-    private fun requestPopularCharacter() {
-        doRequestPopularCharacters()
+    private fun requestPopularComic() {
+        doRequestPopularComics()
     }
 
-    private fun doRequestPopularCharacters() {
+    private fun doRequestPopularComics() {
         lifecycleScope.launch {
-            val popularCharacters = CharacterDbClient.service.listPopularCharacters(
+            val popularComics = ComicsClient.service.listPopularComics(
                 ts,
                 apyKeyPublic,
-                hash(),
-                "20"
+                hash()//,
+//                "20"
             )
-            charactersAdapter.characters = popularCharacters.data.results
-            charactersAdapter.notifyDataSetChanged()
+            comicsAdapter.comics = popularComics.data.results
+            comicsAdapter.notifyDataSetChanged()
         }
     }
 

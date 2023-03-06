@@ -1,24 +1,25 @@
-package com.pedroaguilar.marvel
+package com.pedroaguilar.marvel.presentacion.characterUI
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.pedroaguilar.marvel.databinding.ViewMovieItemBinding
-import com.pedroaguilar.marvel.model.comic.ComicDb
+import com.pedroaguilar.marvel.model.character.CharacterDb
 
 /**
  * Proyect: My Movies
- * From: com.pedroaguilar.marvel
- * Create by Pedro Aguilar Fernández on 05/03/2023 at 13:13
+ * From: com.pedroaguilar.mymovies
+ * Create by Pedro Aguilar Fernández on 10/01/2023 at 13:29
  * More info: linkedin.com/in/pedro-aguilar-fernández-167753140
  * All rights reserved 2023
  **/
-class ComicsAdapter (
-    var comics: List<ComicDb>,
-    private val comicClickedLsitener: (ComicDb) -> Unit)
+
+class CharactersAdapter(
+    var characters: List<CharacterDb>,
+    private val characterClickedLsitener: (CharacterDb) -> Unit)
     :
-    RecyclerView.Adapter<ComicsAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
     /**
      * Creara una nueva vista cuando el recyclerView se lo pida
@@ -37,23 +38,23 @@ class ComicsAdapter (
      * Actualizara las vistas cuando el recyclerView se lo pida
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val comic = comics[position]
-        holder.bind(comic)//movie es un objeto pelicula en una posicion concreta
+        val character = characters[position]
+        holder.bind(character)//movie es un objeto pelicula en una posicion concreta
         //asignar el onClikListener al adapter. El holder guarda la vista que le pasamos
         // por argumento al ViewHolder en la propiedad itemView
-        holder.itemView.setOnClickListener { comicClickedLsitener(comic) }
+        holder.itemView.setOnClickListener { characterClickedLsitener(character) }
     }
 
     /**
      * Devuelve el numero de elementos que tiene el adapter
      */
-    override fun getItemCount(): Int = comics.size
+    override fun getItemCount(): Int = characters.size
 
     class ViewHolder(private val binding: ViewMovieItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(comic: ComicDb){
-            binding.tvTitleMovie.text = comic.title
+        fun bind(character: CharacterDb){
+            binding.tvTitleMovie.text = character.name
             Glide.with(binding.root.context)
-                .load("${comic.thumbnail.path.replace("http","https")}.${comic.thumbnail.extension}")
+                .load("${character.thumbnail.path.replace("http","https")}.${character.thumbnail.extension}")
                 .into(binding.imgCharacter)
         }
     }
