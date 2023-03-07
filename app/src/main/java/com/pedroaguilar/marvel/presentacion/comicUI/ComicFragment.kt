@@ -65,8 +65,8 @@ class ComicFragment : Fragment() {
             val popularComics = ComicsClient.service.listPopularComics(
                 ts,
                 apyKeyPublic,
-                hash()//,
-//                "20"
+                hash(),
+                "20"
             )
             comicsAdapter.comics = popularComics.data.results
             comicsAdapter.notifyDataSetChanged()

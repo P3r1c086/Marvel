@@ -17,6 +17,6 @@ interface TheComicsService {
         @Query("ts") ts: String,
         @Query("apikey") apiKeyPublic: String,
         @Query("hash")hash: String,
-//        @Query("limit") limit: String
+        @Query("limit") limit: String
     ): ComicsResult
 }
