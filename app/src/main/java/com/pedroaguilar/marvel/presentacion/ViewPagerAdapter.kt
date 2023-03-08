@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.pedroaguilar.marvel.presentacion.characterUI.CharacterFragment
 import com.pedroaguilar.marvel.presentacion.comicUI.ComicFragment
+import com.pedroaguilar.marvel.presentacion.serieUI.SerieFragment
 
 /**
  * Proyect: My Movies
@@ -39,12 +40,13 @@ class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
                 }
                 return fragment
             }
-            3 -> { val fragment = CharacterFragment()
+            3 -> { val fragment = SerieFragment()
                 fragment.arguments = Bundle().apply {
                     // Our object is just an integer :-P
                     putInt(ARG_OBJECT, position + 1)
                 }
-                return fragment}
+                return fragment
+            }
 
             else -> CharacterFragment()
         }

@@ -1,4 +1,4 @@
-package com.pedroaguilar.marvel.presentacion.characterUI
+package com.pedroaguilar.marvel.presentacion.serieUI
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,67 +8,65 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.pedroaguilar.marvel.presentacion.DetailCharacterActivity
-import com.pedroaguilar.marvel.databinding.FragmentCharacterBinding
-import com.pedroaguilar.marvel.model.character.CharacterDb
-import com.pedroaguilar.marvel.model.character.CharacterDbClient
+import com.pedroaguilar.marvel.databinding.FragmentSerieBinding
+import com.pedroaguilar.marvel.model.serie.SerieDb
+import com.pedroaguilar.marvel.model.serie.SerieDbClient
+import com.pedroaguilar.marvel.presentacion.DetailsSeriesActivity
 import kotlinx.coroutines.launch
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.sql.Timestamp
 
-class CharacterFragment : Fragment() {
+class SerieFragment : Fragment() {
 
     companion object{
         private const val ARG_OBJECT = "object"
     }
 
-    private lateinit var binding: FragmentCharacterBinding
+    private lateinit var binding: FragmentSerieBinding
 
     val ts = Timestamp(System.currentTimeMillis()).time.toString()
     val apyKeyPublic = "76c50e571bdbf850b8df6384d24b6670"
     val apyKeyPrivate = "9728204088bf033acdd0e62ab60b0cf6b91ef0c9"
 
-    //esta lamnda representa el listener
-    private val charactersAdapter = CharactersAdapter(emptyList()){ character ->  navigateTo(character)}
-    //al adapter se le pasa una lista y en este caso concreto, un listener
+    private val seriesAdapter = SeriesAdapter(emptyList()){ serie -> navigateTo(serie)}
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCharacterBinding.inflate(inflater, container, false)
+        binding = FragmentSerieBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-            requestPopularCharacter()
-            binding.recycler.adapter = charactersAdapter
+            requestPopularSerie()
+            binding.recycler.adapter = seriesAdapter
         }
-
     }
-    private fun navigateTo(character: CharacterDb) {
-        val intent = Intent(activity, DetailCharacterActivity::class.java)
-        intent.putExtra(DetailCharacterActivity.EXTRA_CHARACTER, character)
+
+    private fun navigateTo(serie: SerieDb) {
+        val intent = Intent(activity, DetailsSeriesActivity::class.java)
+        intent.putExtra(DetailsSeriesActivity.EXTRA_SERIE, serie)
         startActivity(intent)
     }
 
     @SuppressLint("MissingPermission")
-    private fun requestPopularCharacter() {
-        doRequestPopularCharacters()
+    private fun requestPopularSerie() {
+        doRequestPopularSeries()
     }
 
-    private fun doRequestPopularCharacters() {
+    private fun doRequestPopularSeries() {
         lifecycleScope.launch {
-            val popularCharacters = CharacterDbClient.service.listPopularCharacters(
+            val popularSeries = SerieDbClient.service.listPopularSeries(
                 ts,
                 apyKeyPublic,
                 hash(),
                 "20"
             )
-            charactersAdapter.characters = popularCharacters.data.results
-            charactersAdapter.notifyDataSetChanged()
+            seriesAdapter.series = popularSeries.data.results
+            seriesAdapter.notifyDataSetChanged()
         }
     }
 

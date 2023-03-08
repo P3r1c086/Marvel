@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,9 +15,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Marvel"
         tools:targetApi="31">
-
         <activity
-            android:name="com.pedroaguilar.marvel.presentacion.MainActivity"
+            android:name=".presentacion.DetailsSeriesActivity"
+            android:exported="false"
+            android:parentActivityName=".presentacion.MainActivity"
+            android:theme="@style/Theme.Marvel.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".presentacion.DetailsComicsActivity"
+            android:exported="false"
+            android:parentActivityName=".presentacion.MainActivity"
+            android:theme="@style/Theme.Marvel.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".presentacion.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,18 +45,16 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-        <!-- ParentActivityName es para volver a la actividad anterior  -->
+        </activity> <!-- ParentActivityName es para volver a la actividad anterior -->
         <activity
-            android:name="com.pedroaguilar.marvel.presentacion.DetailActivity"
-            android:theme="@style/Theme.Marvel.NoActionBar"
+            android:name=".presentacion.DetailCharacterActivity"
+            android:exported="false"
             android:parentActivityName=".presentacion.MainActivity"
-            android:exported="false">
+            android:theme="@style/Theme.Marvel.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
     </application>
 
 </manifest>

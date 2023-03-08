@@ -6,19 +6,19 @@ import android.widget.TextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.bumptech.glide.Glide
-import com.pedroaguilar.marvel.databinding.ActivityDetailBinding
+import com.pedroaguilar.marvel.databinding.ActivityDetailsCharactersBinding
 import com.pedroaguilar.marvel.model.character.CharacterDb
 
-class DetailActivity : AppCompatActivity() {
+class DetailCharacterActivity : AppCompatActivity() {
 
     //companion object es un objeto que comparten todas las instancias de esta clase
     companion object{
-        const val EXTRA_CHARACTER = "DetailActivity:character"
+        const val EXTRA_CHARACTER = "DetailCharacterActivity:character"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityDetailBinding.inflate(layoutInflater)
+        val binding = ActivityDetailsCharactersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)

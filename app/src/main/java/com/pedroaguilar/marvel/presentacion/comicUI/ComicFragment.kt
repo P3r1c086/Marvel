@@ -8,10 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.pedroaguilar.marvel.presentacion.DetailActivity
+import com.pedroaguilar.marvel.presentacion.DetailCharacterActivity
 import com.pedroaguilar.marvel.databinding.FragmentComicBinding
 import com.pedroaguilar.marvel.model.comic.ComicDb
 import com.pedroaguilar.marvel.model.comic.ComicsClient
+import com.pedroaguilar.marvel.presentacion.DetailsComicsActivity
 import kotlinx.coroutines.launch
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -50,8 +51,8 @@ class ComicFragment : Fragment() {
     }
 
     private fun navigateTo(comic: ComicDb) {
-        val intent = Intent(activity, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.EXTRA_CHARACTER, comic)
+        val intent = Intent(activity, DetailsComicsActivity::class.java)
+        intent.putExtra(DetailsComicsActivity.EXTRA_COMIC, comic)
         startActivity(intent)
     }
 
